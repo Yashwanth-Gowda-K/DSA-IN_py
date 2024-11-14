@@ -1,0 +1,80 @@
+In Python, a **stack** is a collection that follows the **LIFO** (Last In, First Out) principle. This means that the last element you add to the stack is the first one you remove. It’s like a stack of plates, where you add plates to the top and also remove plates from the top.
+
+### Key Operations in a Stack:
+1. **Push**: Add an item to the top of the stack.
+2. **Pop**: Remove the item from the top of the stack.
+3. **Peek**: Look at the item at the top of the stack without removing it.
+4. **isEmpty**: Check if the stack is empty.
+
+### When to Use a Stack:
+- **Undo/Redo**: In applications like text editors, stacks are used to keep track of previous actions for undo and redo functionalities.
+- **Expression Parsing**: Stacks are used in evaluating expressions, such as converting infix expressions to postfix, or evaluating postfix expressions.
+- **Recursive Function Call Management**: Internally, Python uses a stack to manage function calls and return addresses.
+- **Backtracking Algorithms**: When exploring possible solutions (e.g., in puzzles like mazes), stacks help in backtracking.
+
+### Example of Stack in Python Using List:
+
+```python
+class Stack:
+    def __init__(self):
+        self.stack = []  # Initialize an empty stack
+
+    def push(self, item):
+        """Add an item to the stack."""
+        self.stack.append(item)
+
+    def pop(self):
+        """Remove and return the item from the top of the stack."""
+        if not self.isEmpty():
+            return self.stack.pop()
+        else:
+            return "Stack is empty"
+
+    def peek(self):
+        """Return the top item without removing it."""
+        if not self.isEmpty():
+            return self.stack[-1]
+        else:
+            return "Stack is empty"
+
+    def isEmpty(self):
+        """Check if the stack is empty."""
+        return len(self.stack) == 0
+
+    def size(self):
+        """Return the size of the stack."""
+        return len(self.stack)
+
+
+# Using the Stack
+stack = Stack()
+
+# Push items onto the stack
+stack.push(10)
+stack.push(20)
+stack.push(30)
+
+print("Top item:", stack.peek())  # 30
+print("Stack size:", stack.size())  # 3
+
+# Pop an item from the stack
+print("Popped item:", stack.pop())  # 30
+
+# Checking if the stack is empty
+print("Is stack empty?", stack.isEmpty())  # False
+```
+
+### Explanation:
+1. **push(10), push(20), push(30)**: Adds the items to the top of the stack in that order.
+2. **peek()**: Looks at the top item (30) without removing it.
+3. **pop()**: Removes the top item (30) from the stack.
+4. **isEmpty()**: Checks if the stack is empty after popping.
+
+In this example, the stack keeps track of elements in a specific order, and you can perform operations like pushing and popping efficiently.
+
+### When to Use:
+- **Expression Evaluation**: If you're parsing mathematical expressions, a stack can be helpful for handling operators and operands.
+- **Backtracking Algorithms**: If you're working with algorithms where you need to "backtrack" or explore alternatives, a stack is the perfect fit.
+- **Function Call Management**: Internally, Python uses stacks to manage function calls. If you’re implementing recursive algorithms, understanding stacks is essential.
+
+In simple terms, use a stack when you need to access data in reverse order, or when managing "last action first" scenarios.
