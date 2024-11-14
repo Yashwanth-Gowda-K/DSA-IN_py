@@ -1,0 +1,63 @@
+### What is Linear Search?
+
+**Linear Search** is a basic and simple algorithm used to search for an element in a list or array. The algorithm works by checking each element of the list one by one, starting from the beginning, until it either finds the element or reaches the end of the list.
+
+### How Linear Search Works:
+1. Start from the first element of the list (or array).
+2. Compare the current element with the target element (the element you're searching for).
+3. If the element matches the target, return its index (or the element itself).
+4. If the element doesn't match, move to the next element and repeat the process.
+5. If you reach the end of the list without finding the target, return **-1** (or some indication that the element is not present).
+
+### Time Complexity:
+- **Best case**: O(1) – when the target element is at the very beginning of the list.
+- **Worst case**: O(n) – when the target element is at the very end of the list or not present at all.
+- **Average case**: O(n) – On average, you will check about half of the elements in the list.
+
+### Space Complexity:
+- **O(1)** – Linear search uses a constant amount of extra space, regardless of the size of the input.
+
+### Linear Search Example in Python:
+
+```python
+def linear_search(arr, target):
+    # Loop through each element in the list
+    for i in range(len(arr)):
+        # If element is found, return the index
+        if arr[i] == target:
+            return i
+    # If element is not found, return -1
+    return -1
+
+# Example Usage
+arr = [10, 20, 30, 40, 50]
+target = 30
+
+result = linear_search(arr, target)
+if result != -1:
+    print(f"Element {target} found at index {result}")
+else:
+    print(f"Element {target} not found")
+```
+
+### Output:
+```
+Element 30 found at index 2
+```
+
+### When to Use Linear Search:
+
+- **Unsorted lists**: Linear search can be used on both **sorted** and **unsorted** lists. However, if the list is sorted, more efficient search algorithms like **binary search** are usually preferred.
+- **Small datasets**: When dealing with small datasets, linear search is simple and efficient enough.
+- **When no advanced data structure is available**: If you're working with an unsorted collection and don't have a binary search tree, hash table, or other advanced search techniques, linear search is a good option.
+
+### Advantages of Linear Search:
+- **Simplicity**: Linear search is easy to implement and understand.
+- **No need for sorting**: You don't need to sort the array before using linear search, unlike binary search, which requires sorted data.
+
+### Disadvantages of Linear Search:
+- **Inefficiency for large datasets**: For large datasets, the time complexity of O(n) can be slow, especially if the target element is near the end or not present.
+- **No optimizations**: Unlike more advanced search algorithms like binary search, linear search doesn't take advantage of the order of elements.
+
+### Conclusion:
+Linear search is a fundamental searching algorithm that works by checking each element in sequence until the target is found or the list is exhausted. Although it's not the most efficient search algorithm, it is simple, easy to implement, and can be useful in situations where the data is unsorted or small.
