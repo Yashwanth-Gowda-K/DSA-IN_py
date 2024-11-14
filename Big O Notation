@@ -1,0 +1,166 @@
+### What is Big O Notation?
+
+**Big O notation** is a mathematical notation used to describe the **time complexity** or **space complexity** of an algorithm. It helps to express the **upper bound** of the performance of an algorithm, meaning the worst-case scenario. Big O focuses on how the runtime or memory usage grows as the input size increases, and it ignores constant factors and lower-order terms.
+
+In simpler terms, Big O notation is used to express how the time (or space) complexity of an algorithm scales as the size of the input increases. This helps us understand how efficient an algorithm is in terms of time and memory.
+
+### Key Concepts of Big O Notation:
+
+1. **Worst-case scenario**: Big O notation primarily represents the upper bound of the runtime or space requirement, meaning it describes the **longest** time an algorithm can take or the **maximum** memory it can use for an input size.
+
+2. **Growth Rate**: The Big O notation describes how an algorithm's performance changes with the size of the input (denoted as `n`). It gives an idea of how the time or space complexity grows as the input size increases.
+
+### Common Big O Notations:
+
+Here are the most common Big O complexities:
+
+#### 1. **O(1) - Constant Time**
+- An algorithm is said to have **O(1)** complexity if its runtime does not depend on the size of the input. It takes the same constant amount of time, no matter how large the input is.
+  
+  **Example**: Accessing an element by index in an array or performing a basic arithmetic operation like addition.
+
+  ```python
+  def get_element(arr, index):
+      return arr[index]
+  ```
+
+#### 2. **O(log n) - Logarithmic Time**
+- An algorithm is **O(log n)** if the time it takes to execute grows logarithmically as the input size increases. This usually happens when an algorithm divides the input in half at each step (like binary search).
+
+  **Example**: **Binary Search** in a sorted array.
+
+  ```python
+  def binary_search(arr, target):
+      low, high = 0, len(arr) - 1
+      while low <= high:
+          mid = (low + high) // 2
+          if arr[mid] == target:
+              return mid
+          elif arr[mid] < target:
+              low = mid + 1
+          else:
+              high = mid - 1
+      return -1
+  ```
+
+#### 3. **O(n) - Linear Time**
+- An algorithm is **O(n)** if its runtime grows linearly with the size of the input. This means that as the input size doubles, the runtime also doubles.
+
+  **Example**: Iterating over all elements in an array.
+
+  ```python
+  def find_max(arr):
+      max_val = arr[0]
+      for num in arr:
+          if num > max_val:
+              max_val = num
+      return max_val
+  ```
+
+#### 4. **O(n log n) - Linearithmic Time**
+- **O(n log n)** is often seen in more efficient sorting algorithms, such as **Merge Sort** or **Quick Sort**. The runtime grows slightly faster than linear time but much slower than quadratic time.
+
+  **Example**: **Merge Sort** or **Quick Sort**.
+
+  ```python
+  def merge_sort(arr):
+      if len(arr) > 1:
+          mid = len(arr) // 2
+          left = arr[:mid]
+          right = arr[mid:]
+
+          merge_sort(left)
+          merge_sort(right)
+
+          i = j = k = 0
+          while i < len(left) and j < len(right):
+              if left[i] < right[j]:
+                  arr[k] = left[i]
+                  i += 1
+              else:
+                  arr[k] = right[j]
+                  j += 1
+              k += 1
+
+          while i < len(left):
+              arr[k] = left[i]
+              i += 1
+              k += 1
+
+          while j < len(right):
+              arr[k] = right[j]
+              j += 1
+              k += 1
+  ```
+
+#### 5. **O(n^2) - Quadratic Time**
+- An algorithm is **O(n^2)** if its runtime grows quadratically with the size of the input. This is typical in algorithms with nested loops where each element is compared with every other element.
+
+  **Example**: **Bubble Sort**, **Selection Sort**, or **Insertion Sort**.
+
+  ```python
+  def bubble_sort(arr):
+      n = len(arr)
+      for i in range(n):
+          for j in range(0, n-i-1):
+              if arr[j] > arr[j+1]:
+                  arr[j], arr[j+1] = arr[j+1], arr[j]
+  ```
+
+#### 6. **O(2^n) - Exponential Time**
+- An algorithm is **O(2^n)** if its runtime doubles with each additional element in the input. This is often seen in recursive algorithms that explore all possible combinations, such as in certain **brute-force** algorithms.
+
+  **Example**: Solving the **Fibonacci sequence** using recursion without memoization.
+
+  ```python
+  def fibonacci(n):
+      if n <= 1:
+          return n
+      return fibonacci(n-1) + fibonacci(n-2)
+  ```
+
+#### 7. **O(n!) - Factorial Time**
+- An algorithm is **O(n!)** if its runtime grows factorially with the input size. This is typically seen in problems where you need to explore all possible permutations of a set, such as solving the **Traveling Salesman Problem** (TSP) using brute force.
+
+  **Example**: Generating all permutations of a string.
+
+  ```python
+  def permute(s):
+      if len(s) == 0:
+          return ['']
+      result = []
+      for i in range(len(s)):
+          rest = s[:i] + s[i+1:]
+          for p in permute(rest):
+              result.append(s[i] + p)
+      return result
+  ```
+
+### Big O Time Complexity Summary:
+
+| **Big O Notation** | **Growth Rate**            | **Example Algorithm**    |
+|--------------------|----------------------------|--------------------------|
+| **O(1)**           | Constant time              | Accessing an array element |
+| **O(log n)**       | Logarithmic time           | Binary Search             |
+| **O(n)**           | Linear time                | Iterating through an array |
+| **O(n log n)**     | Linearithmic time          | Merge Sort, Quick Sort    |
+| **O(n^2)**         | Quadratic time             | Bubble Sort, Selection Sort |
+| **O(2^n)**         | Exponential time           | Recursive Fibonacci (brute force) |
+| **O(n!)**          | Factorial time             | Generating permutations   |
+
+### How to Calculate Big O?
+
+1. **Identify the basic operations** in the algorithm (e.g., comparisons, assignments).
+2. **Count how many times** each operation is executed based on the input size (`n`).
+3. **Focus on the most significant factor**: Big O notation disregards constant factors and lower-order terms.
+
+For example:
+- In a loop running from `0` to `n-1`, the time complexity is O(n) because it runs `n` times.
+- For a nested loop running from `0` to `n-1` inside another loop, the time complexity is O(n^2).
+
+### Why Big O is Important?
+- **Efficiency**: Big O helps you understand how an algorithm will scale as the input size increases. It enables you to choose the most efficient algorithm based on the problem you're trying to solve.
+- **Comparison**: You can compare the efficiency of different algorithms with Big O notation. Even if an algorithm is theoretically faster in small datasets, Big O helps predict how it will behave as the input grows.
+
+### Conclusion:
+Big O notation provides a way to express how the performance of an algorithm changes with increasing input size. It helps you make informed decisions about which algorithm is the best suited for a given problem, especially when dealing with large datasets.
