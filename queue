@@ -1,0 +1,59 @@
+A **queue** is another type of data structure in Python, but it works on a **First-In, First-Out (FIFO)** principle. This means that the first item added to the queue is the first one to be removed. It's like a line at a ticket counter—people who arrive first get served first.
+
+### Basic Queue Operations:
+1. **Enqueue**: Add an item to the queue (at the back).
+2. **Dequeue**: Remove an item from the queue (from the front).
+3. **Peek**: View the front item without removing it.
+4. **isEmpty**: Check if the queue is empty.
+
+### Creating a Queue in Python:
+You can use a **list** for a queue, but Python has a better-suited data structure called `deque` (from the `collections` module) which is optimized for adding/removing items from both ends.
+
+### Example
+
+Here’s a simple example of a queue using `deque`:
+
+```python
+from collections import deque
+
+# Create an empty queue
+queue = deque()
+
+# Enqueue operation (add items to the back of the queue)
+queue.append("apple")
+queue.append("banana")
+queue.append("cherry")
+
+# The queue now looks like this: deque(["apple", "banana", "cherry"])
+
+# Peek operation (view the front item without removing it)
+front_item = queue[0]
+print("Front item is:", front_item)  # Output: "Front item is: apple"
+
+# Dequeue operation (remove the front item)
+queue.popleft()  # Removes "apple"
+print("Queue after dequeue:", queue)  # Output: deque(["banana", "cherry"])
+
+# isEmpty operation (check if queue is empty)
+if not queue:
+    print("Queue is empty")
+else:
+    print("Queue is not empty")  # Output: "Queue is not empty"
+```
+
+### Explanation:
+1. **Enqueue**: We use `append()` to add items ("apple", "banana", "cherry") to the queue.
+2. **Peek**: We access the front item with `queue[0]`, which checks the first item without removing it.
+3. **Dequeue**: We use `popleft()` to remove the front item. In this case, it removes "apple."
+4. **isEmpty**: We check if the queue is empty using `if not queue`.
+
+### When to Use a Queue:
+
+Queues are used in scenarios where **order matters**, and you need to process items in the order they arrive. Here are some use cases:
+
+1. **Task Scheduling**: When tasks are processed in the order they are added (e.g., printing jobs or CPU task scheduling).
+2. **Breadth-First Search (BFS)**: In graph traversal algorithms, queues are used to explore nodes level by level.
+3. **Handling Requests**: In systems where requests need to be processed in the order they are received, such as in web servers or customer service.
+4. **Real-time Systems**: When events or processes need to be handled sequentially, such as in message processing or data buffering.
+
+In summary, a queue is useful whenever you need to process data in the order it arrives (FIFO), making it ideal for scenarios involving scheduling, message handling, or simulations that require sequential processing.
